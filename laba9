@@ -1,0 +1,54 @@
+#include <iostream>
+#include <conio.h>
+#include <string>
+using namespace std;
+
+void input(string &s);
+int sort(string &s);
+void result(string s, int k); 
+
+int main() {
+	string s;
+	input(s);
+	cout << "::::::::::::::::::::::::::" << endl;
+	int k = sort(s);
+	result(s, k);
+	
+	_getch();
+}
+
+void input(string &s) {
+	cout << "Please, input string: " << endl;
+	getline(cin, s);
+}
+
+int sort(string &s) {
+	int c = 0;
+	int r;
+	for(int i = 0; i < s.length(); i++){
+		r = c;
+		for(int k = 1; k < s.length();k++){
+			if(s[i] == s[k] && i!=k){
+				s.erase(k,1);
+				c++;
+				k--;
+			}
+		}
+		
+		if (r != c)	{
+			s.erase(i,1);
+			c++;
+			i--;
+		}
+	}
+	return c;
+}
+
+void result(string s, int k) {
+	if (k == 0) {
+		cout << "No characters were erased" << "/nString: " << s;
+	} else {
+		cout << "Number of erased characters: " << k << endl;
+		cout << "String : " << s;
+	}
+}
